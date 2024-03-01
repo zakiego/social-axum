@@ -1,0 +1,8 @@
+version: "3"
+services:
+  rust-app:
+    container_name: todo_axum
+    build: .
+    ports:
+      - "3000:7676"
+    restart: always
