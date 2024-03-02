@@ -1,5 +1,6 @@
 use axum::{routing::get, Json, Router};
 use serde_json::{json, Value};
+
 #[tokio::main]
 async fn main() {
     let app = Router::new().route("/", get(home));
@@ -9,5 +10,7 @@ async fn main() {
 }
 
 async fn home() -> Json<Value> {
-    Json(json!({"message": "Hello, World!"}))
+    let timestamp = chrono::prelude::Utc::now().to_string();
+
+    Json(json!({"message": "Hello from Axum", "timestamp": timestamp}))
 }
