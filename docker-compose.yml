@@ -1,7 +1,7 @@
 version: "3"
 services:
   rust-app:
-    container_name: todo_axum
+    container_name: social_axum
     build: .
     ports:
       - "7676:3000"

@@ -11,4 +11,4 @@ COPY . .
 RUN cargo build --release
 
 # Run the Rust application
-CMD ["./target/release/todo-axum"]
+CMD ["./target/release/social_axum"]
