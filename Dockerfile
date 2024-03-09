@@ -1,4 +1,4 @@
-FROM rust:1.49 as build
+FROM rust:latest as build
 
 # create a new empty shell project
 RUN USER=root cargo new --bin social_axum
@@ -20,7 +20,7 @@ RUN rm ./target/release/deps/social_axum*
 RUN cargo build --release
 
 # our final base
-FROM rust:1.49
+FROM rust:latest
 
 # copy the build artifact from the build stage
 COPY --from=build /social_axum/target/release/social_axum .
