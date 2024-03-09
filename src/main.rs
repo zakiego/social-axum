@@ -1,7 +1,7 @@
 use axum::extract::State;
 use axum::Router;
 use axum::{routing::get, Json};
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 use serde_json::{json, Value};
 use social_axum::establish_connection;
 use sqlx::PgPool;
