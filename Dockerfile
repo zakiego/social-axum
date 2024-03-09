@@ -16,8 +16,7 @@ RUN rm ./target/release/deps/social_axum*
 RUN cargo build --release
 
 # final stage
-
-FROM rust:1.49
+FROM rust:latest
 
 COPY --from=build /social_axum/target/release/social_axum .
 CMD ["./social_axum"]
