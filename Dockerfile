@@ -1,14 +1,23 @@
-# Use a Rust base image
+# build stage
 FROM rust:latest
 
-# Set the working directory
-WORKDIR /usr/src/app
+RUN USER=root cargo new --bin social_axum
+WORKDIR /social_axum
 
-# Copy the current directory contents into the container at /usr/src/app
-COPY . .
+COPY ./Cargo.lock ./Cargo.lock
+COPY ./Cargo.toml ./Cargo.toml
 
-# Build the Rust application
+RUN cargo build --release
+RUN rm src/*.rs
+
+COPY ./src ./src
+
+RUN rm ./target/release/deps/social_axum*
 RUN cargo build --release
 
-# Run the Rust application
-CMD ["./target/release/social_axum"]
+# final stage
+
+FROM rust:1.49
+
+COPY --from=build /holodeck/target/release/social_axum .
+CMD ["./social_axum"]
