@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  IMAGE_NAME: social_axum
+  IMAGE_NAME: social-axum
 
 jobs:
   docker:
@@ -30,10 +30,12 @@ jobs:
           docker buildx build . --file Dockerfile --tag $IMAGE_NAME --label
           "runnumber=${GITHUB_RUN_ID}"
 
-      - name: Log in to registry
-        run:
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $
-          --password-stdin
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push image
         run: |
