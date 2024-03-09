@@ -19,5 +19,5 @@ RUN cargo build --release
 
 FROM rust:1.49
 
-COPY --from=build /holodeck/target/release/social_axum .
+COPY --from=build /social_axum/target/release/social_axum .
 CMD ["./social_axum"]
