@@ -20,7 +20,7 @@ RUN rm ./target/release/deps/social_axum*
 RUN cargo build --release
 
 # our final base
-FROM rust:slim-buster
+FROM debian:buster-slim
 
 # copy the build artifact from the build stage
 COPY --from=build /social_axum/target/release/social_axum .
