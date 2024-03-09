@@ -17,9 +17,6 @@ COPY ./src ./src
 
 # build for release
 RUN rm ./target/release/deps/social_axum*
-RUN alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
-
-
 RUN cargo build --release
 
 # our final base
