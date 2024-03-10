@@ -1,6 +1,7 @@
-version: "3"
+version: "3.8"
 services:
   rust-app:
+    image: ghcr.io/zakiego/social-axum:main
     container_name: social_axum
     build: .
     ports:
