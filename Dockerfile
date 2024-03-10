@@ -1,4 +1,4 @@
-FROM rust:latest as build
+FROM rust:1 as build-env
 
 # create a new empty shell project
 RUN USER=root cargo new --bin social_axum
@@ -20,10 +20,6 @@ RUN rm ./target/release/deps/social_axum*
 RUN cargo build --release
 
 # our final base
-FROM alpine:latest
-
-# copy the build artifact from the build stage
-COPY --from=build /social_axum/target/release/social_axum .
-
-# set the startup command to run your binary
-CMD ["./social_axum"]
+FROM gcr.io/distroless/cc-debian12
+COPY --from=build-env /social_axum/target/release/social_axum .
+CMD ["./hello-world-distroless"]
