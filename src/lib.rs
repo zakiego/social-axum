@@ -1,3 +1,9 @@
+mod routes;
+pub use routes::*;
+
+mod models;
+pub use models::*;
+
 use std::env;
 
 use dotenvy::dotenv;
