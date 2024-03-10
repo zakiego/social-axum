@@ -51,5 +51,6 @@ jobs:
           script: |
             cd Docker/social-axum
             git pull && git pull
+            docker pull ghcr.io/${{github.actor}}/${{github.repository}}:main
             docker-compose down
             docker-compose up -d

@@ -3,6 +3,8 @@ services:
   rust-app:
     image: ghcr.io/zakiego/social-axum:main
     container_name: social_axum
+    env_file:
+      - .env
     ports:
       - "7676:3000"
     restart: always
