@@ -22,4 +22,4 @@ RUN cargo build --release
 # our final base
 FROM gcr.io/distroless/cc-debian12
 COPY --from=build-env /social_axum/target/release/social_axum .
-CMD ["./hello-world-distroless"]
+CMD ["./social_axum"]
